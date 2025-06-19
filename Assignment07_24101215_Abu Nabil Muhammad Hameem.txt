@@ -1,0 +1,265 @@
+
+//Task 1 
+public class BrowserHistory {
+	public int count = 0 ;
+	public int max ;
+	public String[]list ;
+
+
+	public BrowserHistory(int n) {
+		this.max = n ;
+		list = new String[n];
+	}
+
+
+	public void showHistory() {
+		if(count==0) {
+			System.out.println("No web pages visited yet. ");
+		} else {
+			System.out.println( "Browser History : ");
+			for(int i = 0 ; i < count ; i++) {
+				System.out.println(list[i]);
+			}
+		}
+	}
+
+	public void currentWeb() {
+		if(count == 0) {
+			System.out.println("You have not visited any website yet ! ");
+		} else if(count<=max) {
+			System.out.println("Current web : " + list[count-1]);
+		}
+	}
+
+	public void visitWeb(String name) {
+		if(count<max) {
+			System.out.println("Visited : " + name);
+			list[count++] = name ; ;
+		} else {
+			System.out.println("History is full. Can not visit " + name + " Web page");
+		}
+	}
+
+
+
+	public void back() {
+		list[count-1] = null ;
+		count-- ;
+	}
+
+}
+
+
+//Task 2 
+
+public class CustomerService {
+
+	public int total = 0 ;
+	public String [] list ;
+	public int max;
+	public String name ;
+
+	public CustomerService(int n ) {
+		list = new String[n];
+		this.max = n ;
+	}
+	public void addCustomer(String name) {
+		this.name = name ;
+		if(total<max) {
+			list[total] = name ;
+			total++;
+			System.out.println("Added : " + name );
+		} else {
+			System.out.println("Queue is full.  Can not add " + name);
+		}
+	}
+
+	public void serveCustomer() {
+		if(total == 0) {
+			System.out.println("No customers to serve ");
+		} else {
+			System.out.println("Serving " + list[0]);
+			for(int i = 1 ; i< total ; i++) {
+				list[i-1] = list[i];
+			}
+			total--;
+		}
+	}
+}
+
+// Task 3 
+
+public class Circle extends Shape{
+    public int radius; 
+    public double a ; 
+    
+    public void area(){
+        this.a = 3.1416 * (radius* radius); 
+        System.out.printf("Area of %s circle : %.2f",super.color , a); 
+    }
+}
+
+
+// Task 4 
+
+public class Dog extends Animal{
+    public String name; 
+    
+    public Dog(){
+    System.out.println("The dog says hello!");
+    }
+    
+    public String getName(){
+        return name; 
+    }
+    
+    public void updateSound(String s){
+        this.sound = s ; 
+    }
+    
+}
+
+// Task 5 
+
+public class Cricket_Tournament extends Tournament{
+    
+    public int teams  ; 
+    public String type; 
+    
+    public Cricket_Tournament(){
+        this.teams = 0 ; 
+        this.type = "No Type";
+    }
+    
+    public Cricket_Tournament(String name , int teams , String type){
+        super(name);
+        this.teams = teams ; 
+        this.type = type ; 
+    }
+    
+
+    public String detail(){
+        return "Cricket Tournament Name : " + getName() +"\nNumber of Teams: "+ teams + "\nType : " + type ; 
+    }
+    
+}
+
+
+public class Tennis_Tournament extends Tournament {
+	public int teams ;
+	public Tennis_Tournament() {
+		this.teams = 0 ;
+	}
+
+	public Tennis_Tournament(String name, int teams ) {
+		super(name);
+		this.teams = teams;
+	}
+
+	public String detail() {
+		return "Tennis Tournament Name : " + getName()  + "\nNumber of players : " + teams ;
+	}
+}
+
+
+// Task 6 
+
+public class Book extends Product{
+    public String isbn , pub ;
+    
+    public Book(int id , String title , int price , String isbn , String pub){
+        super(id,title,price); 
+        this.isbn = isbn ; 
+        this.pub = pub ; 
+    }
+    
+    public String printDetail(){
+        return getIdTitlePrice() + "\nISBN : " + isbn + " Publisher : " + pub ; 
+    }
+    
+    
+}
+public class CD extends Product{
+     public int duration ; 
+     public String band , genre ; 
+    
+    public CD(int id , String title , int price , String b , int du , String g){
+        super(id,title,price); 
+        this.band = b ; 
+        this.duration = du ; 
+        this.genre = g ; 
+    }
+    
+    public String printDetail(){
+        return getIdTitlePrice()+"\nBand : "+band+" Duration : "+duration+" minutes\n" + "Genre : " + genre; 
+    }
+
+}
+
+// Task 7 
+
+public class CSEStudent extends Student {
+	public static int total ;
+	public CSEStudent(String n, int i) {
+		super(n,i);
+		this.total++;
+	}
+	public static void details() {
+		System.out.println("Total CSE Students  : " + total);
+		System.out.println("Available Lab Based Courses : ");
+		System.out.println("CSE110 CSE111 CSE220 CSE 221");
+	}
+
+
+	public void addLabBasedCourse(String c) {
+		if(c.equals("CSE110") || c.equals("CSE111") || c.equals("CSE220") || c.equals("CSE221")) {
+			this.courses+= " " + c ;
+		} else {
+			System.out.println("It is not a lab based course! ");
+		}
+	}
+}
+
+// Task 8 
+public class Player extends SportsPerson{
+    
+    public int goal , played , earning ; 
+    public double ratio ; 
+    
+    public Player(String teamName , String name , String role ,int goal ,int played){
+        super(teamName,name,role); 
+        this.goal = goal; 
+        this.played = played ; 
+        this.earningPerMatch = (goal*1000) + (played * 10 ); 
+        earning = (int) earningPerMatch;
+    }
+    
+    public void calculateRatio(){
+        this.ratio = (double)goal/played ; 
+    }
+    
+    public void printDetails(){
+        System.out.println(getNameTeam() + "\nTeam Role  :" + role); 
+        System.out.println("Total Goal : " + goal + ", Total Played : " + played); 
+        System.out.printf("Goal Ratio : %.2f\n",ratio); 
+        System.out.println("Match Earning : " + earning + "K");
+    }
+}
+
+
+public class Manager extends SportsPerson{
+    public int win ; 
+    public int earning ;
+    public Manager(String teamName , String name , String role , int win){
+        super(teamName,name,role); 
+        this.win = win;
+        this.earningPerMatch =(int)(win*1000); 
+        earning = (int) earningPerMatch;
+    }
+    public void printDetails(){
+        System.out.println(getNameTeam() + "\nTeam Role : " + role); 
+        System.out.println("Total Win : " + win ); 
+        System.out.println("Match Earning : " + earning+ "K"); 
+    }
+}
+
